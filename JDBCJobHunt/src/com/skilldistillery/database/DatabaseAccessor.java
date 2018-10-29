@@ -18,6 +18,7 @@ public interface DatabaseAccessor {
 	public User getUserByUsername(String name);
 	public Profile getProfileById(int pid);
 	public Profile getProfileByName(String fname, String lname);
-	public List<Applications> getApplicationsByProfileId(int pid);
+	public List<Company> getApplicationsByProfileId(int pid);
 	public Company addCompanyToDB(Company company);
+	public Address addAddressToDB(Address addr);
 }

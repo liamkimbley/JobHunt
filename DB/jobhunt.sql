@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `company` (
   `applied` TINYINT NULL,
   `date_applied` DATETIME NULL,
   `date_updated` DATETIME NULL,
-  `address_id` INT NOT NULL,
+  `address_id` INT NULL,
   `response` TINYINT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_company_address`
