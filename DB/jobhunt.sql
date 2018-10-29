@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `city` VARCHAR(100) NOT NULL,
   `state` VARCHAR(45) NOT NULL,
   `country` VARCHAR(100) NOT NULL,
+  `zip` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -135,3 +136,44 @@ GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'jobuser'@'localhost
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `user`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `jobhuntdb`;
+INSERT INTO `user` (`id`, `username`, `password`) VALUES (1, 'johnWick', 'myDoggo');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `address`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `jobhuntdb`;
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `country`, `zip`) VALUES (1, '123 Main Ave', NULL, 'Denver', 'CO', 'USA', 80237);
+INSERT INTO `address` (`id`, `street`, `street2`, `city`, `state`, `country`, `zip`) VALUES (2, '1630 E Herndon Ave', NULL, 'Fresno', 'CA', 'USA', 93720);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `profile`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `jobhuntdb`;
+INSERT INTO `profile` (`id`, `first_name`, `last_name`, `cover_letter`, `resume`, `user_id`, `address_id`) VALUES (1, 'John', 'Wick', NULL, NULL, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `company`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `jobhuntdb`;
+INSERT INTO `company` (`id`, `name`, `jobs_available`, `applied`, `date_applied`, `date_updated`, `address_id`, `response`) VALUES (1, 'Sierra Pacific Orthopedics', 2, 0, NULL, NULL, 2, 0);
+
+COMMIT;
+

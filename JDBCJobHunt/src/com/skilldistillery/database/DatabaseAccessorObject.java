@@ -29,7 +29,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	private static final String getCompanyByName = "SELECT id, name, jobs_available, applied, response FROM company WHERE name = ?";
 	private static final String getUser = "SELECT id, username, password FROM user WHERE id = ?";
 	private static final String getUserByName = "SELECT id, username, password FROM user WHERE username = ?";
-	private static final String getProfile = "SELECT id, first_name, last_name, FROM profile WHERE id = ?";
+	private static final String getProfile = "SELECT id, first_name, last_name FROM profile WHERE id = ?";
 	private static final String getProfileByName = "SELECT id, first_name, last_name, FROM profile WHERE first_name = ? AND last_name = ?";
 	private static final String getAddress = "SELECT id, street, street2, city, state, country FROM address WHERE id = ?";
 	private static final String getApplications = "SELECT id, name, jobs_available, applied, response FROM company JOIN Applications ON applications.company_id = comapny.id WHERE applications.profile_id = ?";
@@ -88,7 +88,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 		try {
 			conn = getDBConnection();
-			stmt = conn.prepareStatement(getCompany);
+			stmt = conn.prepareStatement(getCompanyByName);
 			stmt.setString(1, name);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
