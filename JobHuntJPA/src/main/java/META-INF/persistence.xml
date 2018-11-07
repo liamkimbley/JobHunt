@@ -9,6 +9,10 @@
     
     <!-- entities -->
     <class>com.skilldistillery.jobhunt.entities.Address</class>
+    <class>com.skilldistillery.jobhunt.entities.User</class>
+    <class>com.skilldistillery.jobhunt.entities.Profile</class>
+    <class>com.skilldistillery.jobhunt.entities.Company</class>
+    <class>com.skilldistillery.jobhunt.entities.Applications</class>
     
 
     <properties>
