@@ -1,5 +1,8 @@
 package com.skilldistillery.jobhunt.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -34,9 +38,11 @@ public class Profile {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	private Address addr;
-	
-//	end of fields
 
+	@OneToMany(mappedBy = "profile")
+	private List<Applications> apps;
+
+//	end of fields
 
 	public Profile() {
 	}
@@ -107,6 +113,34 @@ public class Profile {
 
 	public void setAddr(Address addr) {
 		this.addr = addr;
+	}
+
+	public List<Applications> getApps() {
+		return apps;
+	}
+
+	public void setApps(List<Applications> apps) {
+		this.apps = apps;
+	}
+
+	public void addApplication(Applications app) {
+		if (this.apps == null) {
+			apps = new ArrayList<>();
+		}
+		if (!apps.contains(app)) {
+			apps.add(app);
+			if (app.getProf() != null) {
+				app.getProf().getApps().remove(app);
+			}
+			app.setProf(this);
+		}
+	}
+
+	public void removeApplication(Applications app) {
+		app.setProf(null);
+		if (this.apps != null) {
+			apps.remove(app);
+		}
 	}
 
 	@Override
